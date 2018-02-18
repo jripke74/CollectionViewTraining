@@ -34,4 +34,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let text = collectionData[indexPath.row]
+        print("Selected: \(text)")
+    }
 }
