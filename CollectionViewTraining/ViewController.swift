@@ -20,6 +20,15 @@ class ViewController: UIViewController {
         let layout = collectionVeiw.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailsSegue" {
+            if let dest = segue.destination as? DetailsViewController,
+                let index = sender as? IndexPath {
+                dest.selection = collectionData[index.row]
+            }
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -36,7 +45,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let text = collectionData[indexPath.row]
-        print("Selected: \(text)")
+        performSegue(withIdentifier: "DetailsSegue", sender: indexPath)
     }
 }
