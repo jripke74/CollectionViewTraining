@@ -9,7 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet private weak var collectionVeiw: UICollectionView!
+    
     var collectionData = ["1 😀", "2 😩", "3 🤑", "4 🤫", "5 😫", "6 😚", "7 😱", "8 😪", "9 ☹️", "10 😵", "11 🤫", "12 😁"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let width = (view.frame.size.width - 20) / 3
+        let layout = collectionVeiw.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: width, height: width)
+    }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
