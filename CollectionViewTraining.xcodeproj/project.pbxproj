@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8994D0D12040ACD800A2C75A /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994D0D02040ACD800A2C75A /* CollectionViewCell.swift */; };
 		89AF390E203A280900AF30B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF390D203A280900AF30B4 /* AppDelegate.swift */; };
 		89AF3910203A280900AF30B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AF390F203A280900AF30B4 /* ViewController.swift */; };
 		89AF3913203A280900AF30B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89AF3911203A280900AF30B4 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8994D0D02040ACD800A2C75A /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		89AF390A203A280900AF30B4 /* CollectionViewTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89AF390D203A280900AF30B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89AF390F203A280900AF30B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				89AF3916203A280900AF30B4 /* LaunchScreen.storyboard */,
 				89AF3919203A280900AF30B4 /* Info.plist */,
 				89AF391F203A3E0200AF30B4 /* DetailsViewController.swift */,
+				8994D0D02040ACD800A2C75A /* CollectionViewCell.swift */,
 			);
 			path = CollectionViewTraining;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			files = (
 				89AF3910203A280900AF30B4 /* ViewController.swift in Sources */,
 				89AF390E203A280900AF30B4 /* AppDelegate.swift in Sources */,
+				8994D0D12040ACD800A2C75A /* CollectionViewCell.swift in Sources */,
 				89AF3920203A3E0200AF30B4 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

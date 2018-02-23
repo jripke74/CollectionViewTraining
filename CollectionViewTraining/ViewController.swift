@@ -9,9 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    @IBOutlet private weak var deleteButton: UIBarButtonItem!
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet private weak var collectionVeiw: UICollectionView!
+    
+    @IBAction func deleteSelected() {
+        if let selected = collectionVeiw.indexPathsForSelectedItems {
+            let items = selected.map{$0.item}.sorted().reversed()
+            for item in items {
+                collectionData.remove(at: item)
+            }
+            collectionVeiw.deleteItems(at: selected)
+        }
+    }
     
     @IBAction func addItem() {
         collectionVeiw.performBatchUpdates({
@@ -55,7 +65,14 @@ class ViewController: UIViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        deleteButton.isEnabled = editing
         addButton.isEnabled = !editing
+        collectionVeiw.allowsMultipleSelection = editing
+        let indexes = collectionVeiw.indexPathsForVisibleItems
+        for index in indexes {
+            let cell = collectionVeiw.cellForItem(at: index) as! CollectionViewCell
+            cell.isEditing = editing
+        }
     }
 }
 
@@ -65,14 +82,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
-        if let label = cell.viewWithTag(100) as? UILabel {
-            label.text = collectionData[indexPath.row]
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+        cell.titleLabel.text = collectionData[indexPath.row]
+        cell.isEditing = isEditing
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "DetailsSegue", sender: indexPath)
+        if !isEditing {
+            performSegue(withIdentifier: "DetailsSegue", sender: indexPath)
+        }
     }
 }
