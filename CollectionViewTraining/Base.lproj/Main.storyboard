@@ -65,8 +65,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2aD-RW-SYu"/>
+                    <navigationItem key="navigationItem" id="2aD-RW-SYu">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="I9H-fN-CYj">
+                            <connections>
+                                <action selector="addItem" destination="BYZ-38-t0r" id="b3S-4v-Hcn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="I9H-fN-CYj" id="bre-WG-HRZ"/>
                         <outlet property="collectionVeiw" destination="Zag-Yi-Xxg" id="hFW-w0-xNI"/>
                         <segue destination="dkF-aN-DzY" kind="show" identifier="DetailsSegue" id="75k-tI-9Wr"/>
                     </connections>

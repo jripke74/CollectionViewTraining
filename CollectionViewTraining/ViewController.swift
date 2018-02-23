@@ -10,15 +10,38 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet private weak var collectionVeiw: UICollectionView!
+    
+    @IBAction func addItem() {
+        collectionVeiw.performBatchUpdates({
+            for _ in 0..<2 {
+                let text = "\(collectionData.count - 1) 🤘"
+                collectionData.append(text)
+                let index = IndexPath(row: collectionData.count - 1, section: 0)
+                collectionVeiw.insertItems(at: [index])
+            }
+        }, completion: nil)
+    }
     
     var collectionData = ["1 😀", "2 😩", "3 🤑", "4 🤫", "5 😫", "6 😚", "7 😱", "8 😪", "9 ☹️", "10 😵", "11 🤫", "12 😁"]
     
+    @objc func refresh() {
+        addItem()
+        collectionVeiw.refreshControl?.endRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set up a 3-column Collection View
         let width = (view.frame.size.width - 20) / 3
         let layout = collectionVeiw.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
+        // Refresh Control
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        collectionVeiw.refreshControl = refresh
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -28,6 +51,11 @@ class ViewController: UIViewController {
                 dest.selection = collectionData[index.row]
             }
         }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        addButton.isEnabled = !editing
     }
 }
 
